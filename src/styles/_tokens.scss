@@ -1,0 +1,29 @@
+// ─── COLOR TOKENS ───────────────────────────────
+:root {
+    // Backgrounds
+    --ns-bg-void: #0a0a0a;
+    --ns-bg-surface: #111111;
+    --ns-bg-raised: #1a1a1a;
+
+    // Accent
+    --ns-accent: #e8ff47;
+    --ns-accent-dim: rgba(232, 255, 71, 0.15);
+
+    // Text
+    --ns-text-primary: #f0f0f0;
+    --ns-text-muted: #888888;
+    --ns-text-ghost: #444444;
+
+    // Spacing scale
+    --ns-space-xs: 0.25rem;
+    --ns-space-sm: 0.5rem;
+    --ns-space-md: 1rem;
+    --ns-space-lg: 2rem;
+    --ns-space-xl: 4rem;
+    --ns-space-2xl: 8rem;
+}
+
+// ─── TYPOGRAPHY TOKENS ──────────────────────────
+$font-display: 'Syne', sans-serif;
+$font-body: 'Inter', sans-serif;
+$font-quirk: 'Caveat', cursive;

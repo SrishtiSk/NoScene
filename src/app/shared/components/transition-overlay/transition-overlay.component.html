@@ -1,0 +1,8 @@
+<div class="overlay" [class.overlay--glitch]="ts.isGlitching()"
+    [class.overlay--blackout]="ts.isBlackout() || ts.isGlitching()">
+
+    @if (ts.isPunchline()) {
+    <p class="overlay__punchline">relax. i'm just getting started.</p>
+    }
+
+</div>

@@ -1,0 +1,24 @@
+<section class="drop" [class.drop--active]="dropped()">
+
+    <span class="drop__watermark"
+    [class.drop__watermark--found]="eggOneActive()"
+    (mouseenter)="onWatermarkEnter()"
+    (mouseleave)="onWatermarkLeave()"
+    >
+        <span class="drop__watermark-default">NoScene</span>
+        <span class="drop__watermark-reveal">you found me.</span>
+    </span>
+
+    <div class="drop__lines">
+        <h1 class="drop__word drop__word--1">Deals.</h1>
+        <h1 class="drop__word drop__word--2">Assignments.</h1>
+        <h1 class="drop__word drop__word--3">Sorted.</h1>
+    </div>
+
+    <p class="drop__whisper">- and yes, I built this.</p>
+
+    <button class="drop__cta" (click)="onSeeHow()">
+        See how ↓
+    </button>
+
+</section>

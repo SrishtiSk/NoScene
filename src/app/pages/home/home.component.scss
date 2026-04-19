@@ -1,0 +1,215 @@
+@use '../../../styles/tokens' as *;
+
+.drop {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; 
+    gap: var(--ns-space-lg);
+    padding: var(--ns-space-xl) var(--ns-space-lg);
+
+    // ── Layered depth background ───────────────
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 40%,
+            #12122a 0%, // ← deep indigo-black core
+            #0c0c18 30%, // ← dark indigo mid
+            #080808 65%, // ← near void
+            #030303 100% // ← absolute void at edges
+        );
+
+    // Subtle top vignette
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 100% 100% at 0% 0%,
+                rgba(0, 0, 0, 0.6) 0%,
+                transparent 50%),
+            radial-gradient(ellipse 100% 100% at 100% 0%,
+                rgba(0, 0, 0, 0.6) 0%,
+                transparent 50%),
+            radial-gradient(ellipse 100% 100% at 0% 100%,
+                rgba(0, 0, 0, 0.5) 0%,
+                transparent 50%),
+            radial-gradient(ellipse 100% 100% at 100% 100%,
+                rgba(0, 0, 0, 0.5) 0%,
+                transparent 50%),
+            // Accent glow — barely there, just warmth
+            radial-gradient(ellipse 50% 30% at 50% 90%,
+                rgba(232, 255, 71, 0.04) 0%,
+                transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    // ── Second depth layer ──────────────────────
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 40% 40% at 50% 50%,
+                transparent 40%,
+                rgba(0, 0, 0, 0.4) 100% // ← darkens the outer ring further
+            );
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    // ── Watermark ──────────────────────────────
+    &__watermark {
+        position: absolute;
+        font-family: $font-display;
+        font-weight: 800;
+        font-size: clamp(2.5rem, 9vw, 7rem);
+        user-select: none;
+        pointer-events: auto;
+        cursor: default;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 90vw;
+        overflow: hidden;
+        opacity: 0;
+        transition: opacity 1.2s ease 0.2s;
+        z-index: 0;
+
+    // both children share base style
+        &-default,
+        &-reveal {
+            display: block;
+            text-align: center;
+            letter-spacing: 0.35em;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            white-space: nowrap;
+        }
+    
+        // DEFAULT — "NoScene" visible at rest
+        &-default {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+            opacity: 1;
+            transform: translateY(0);
+        }
+    
+        // REVEAL — "you found me." hidden at rest
+        &-reveal {
+            font-family: $font-quirk;
+            font-size: 0.6em; // ← smaller so it never reflows parent
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(232, 255, 71, 0.3);
+            letter-spacing: 0.1em;
+            opacity: 0;
+            transform: translateY(0.5rem);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+        }
+    
+        // FOUND STATE — swap visibility, no DOM change
+        &--found {
+            .drop__watermark-default {
+                opacity: 0;
+                transform: translateY(-0.5rem);
+            }
+    
+            .drop__watermark-reveal {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    
+
+    // ── Headline lines ─────────────────────────
+    &__lines {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--ns-space-sm);
+        z-index: 1;
+    }
+
+    &__word {
+        font-family: $font-display;
+        font-size: clamp(2rem, 6vw, 5.5rem); // ← pulled back from 8vw/7rem
+        font-weight: 800;
+        color: var(--ns-text-primary);
+        opacity: 0;
+        transform: translateY(2rem);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+        line-height: 1.1;
+
+        &--1 {
+            transition-delay: 0.4s;
+        }
+
+        &--2 {
+            transition-delay: 0.7s;
+        }
+
+        &--3 {
+            transition-delay: 1.0s;
+            color: var(--ns-accent);
+        }
+    }
+
+    // ── Whisper line ───────────────────────────
+    &__whisper {
+        font-family: $font-quirk;
+        font-size: clamp(1rem, 2.5vw, 1.5rem); // ← slightly smaller, more whisper
+        color: var(--ns-text-muted);
+        opacity: 0;
+        transform: translateY(1rem);
+        transition: opacity 0.8s ease 1.4s,
+            transform 0.8s ease 1.4s;
+        z-index: 1;
+        letter-spacing: 0.02em;
+    }
+
+    // ── CTA Button ─────────────────────────────
+    &__cta {
+        font-family: $font-body;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--ns-text-primary);
+        border: 1px solid var(--ns-text-ghost);
+        padding: var(--ns-space-sm) var(--ns-space-lg);
+        border-radius: 2rem;
+        opacity: 0;
+        transform: translateY(1rem);
+        transition:
+            opacity 0.8s ease 1.9s,
+            transform 0.8s ease 1.9s,
+            border-color 0.3s ease,
+            color 0.3s ease,
+            box-shadow 0.3s ease;
+        z-index: 1;
+
+        &:hover {
+            border-color: var(--ns-accent);
+            color: var(--ns-accent);
+            box-shadow: 0 0 20px rgba(232, 255, 71, 0.15); // ← glow on hover
+        }
+    }
+
+    // ── Active state ───────────────────────────
+    &--active {
+        .drop__watermark {
+            opacity: 1;
+        }
+
+        .drop__word,
+        .drop__whisper,
+        .drop__cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
