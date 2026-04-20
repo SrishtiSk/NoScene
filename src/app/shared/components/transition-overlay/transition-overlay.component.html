@@ -1,7 +1,41 @@
-<div class="overlay" [class.overlay--glitch]="ts.isGlitching()"
-    [class.overlay--blackout]="ts.isBlackout() || ts.isGlitching()">
+<div class="overlay" [class.overlay--active]="ts.isBlackout() || ts.isGlitching()"
+    [class.overlay--dark]="ts.isBlackout()">
+    
+    <!-- Fake Aw Snap Screen -->
+    @if (ts.isGlitching()) {
+    <div class="snap">
+        <div class="snap__icon">
+            <!-- Chrome's sad face, hand-coded SVG -->
+            <svg viewBox="0 0 64 64" fill="none">
+                <rect x="8" y="8" width="20" height="16" rx="2" stroke="#5f6368" stroke-width="3" />
+                <rect x="8" y="28" width="20" height="8" rx="1" stroke="#5f6368" stroke-width="2" />
+                <line x1="32" y1="16" x2="56" y2="16" stroke="#5f6368" stroke-width="3" stroke-linecap="round" />
+                <line x1="32" y1="24" x2="48" y2="24" stroke="#5f6368" stroke-width="3" stroke-linecap="round" />
+                <circle cx="44" cy="40" r="12" stroke="#5f6368" stroke-width="3" />
+                <line x1="40" y1="44" x2="48" y2="36" stroke="#5f6368" stroke-width="3" stroke-linecap="round" />
+                <line x1="40" y1="36" x2="48" y2="44" stroke="#5f6368" stroke-width="3" stroke-linecap="round" />
+            </svg>
+        </div>
+        <h1 class="snap__title">Aw, Snap!</h1>
+        <p class="snap__body">
+            Something went wrong while displaying this webpage.
+        </p>
+        <div class="snap__actions">
+            <a class="snap__link">Learn more</a>
+            <button class="snap__reload">Reload</button>
+        </div>
+    </div>
+    }
 
+    <!-- Got ya popup -->
     @if (ts.isPunchline()) {
+    <div class="gotya">
+        got ya! 😜
+    </div>
+    }
+
+    <!-- Relax line -->
+    @if (ts.isRelax()) {
     <p class="overlay__punchline">relax. i'm just getting started.</p>
     }
 

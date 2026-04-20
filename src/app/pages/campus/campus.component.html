@@ -1,4 +1,39 @@
-<div style="color: white; padding: 4rem; text-align: center;">
-    <h1>CampusXPlace</h1>
-    <p>The product lives here.</p>
-</div>
+<nav class="cx-nav">
+    <span class="cx-nav__logo">No<span>Scene</span></span>
+    <p class="cx-nav__tagline">Deals. Assignments. Sorted.</p>
+</nav>
+
+<section class="cx-hub"  
+[style.--spot-x]="spotX() + '%'"
+[style.--spot-y]="spotY() + '%'">
+
+    <div class="cx-hub__intro">
+        <h1 class="cx-hub__headline">What are you here for?</h1>
+        <p class="cx-hub__sub">Pick your world.</p>
+    </div>
+
+    <div class="cx-hub__grid">
+        @for (f of features; track f.id; let i= $index) {
+        <div class="cx-feature-card" 
+            [class.cx-feature-card--visible]="visibleCards()[i]"
+            [class.cx-feature-card--hovered]="hoveredId === f.id"
+            [style.--card-accent]="f.accent" 
+            (mouseenter)="hoveredId = f.id" 
+            (mouseleave)="hoveredId = null"
+            (click)="navigate(f.route)">
+
+            <span class="cx-feature-card__icon">{{ f.icon }}</span>
+            <h2 class="cx-feature-card__label">{{ f.label }}</h2>
+            <p class="cx-feature-card__desc">{{ f.description }}</p>
+
+            <div class="cx-feature-card__categories">
+                @for (cat of f.categories; track cat) {
+                <span class="cx-feature-card__cat">{{ cat }}</span>
+                }
+            </div>
+
+            <span class="cx-feature-card__arrow">→</span>
+        </div>
+        }
+    </div>
+</section>
