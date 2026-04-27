@@ -32,6 +32,12 @@ export const routes: Routes = [
             .then(m => m.DashboardComponent)
     },
     {
+        path: 'campus/marketplace/:id',
+        loadComponent: () =>
+            import('./pages/campus/features/marketplace/product-detail/product-detail.component')
+                .then(m => m.ProductDetailComponent)
+    },
+    {
         path:'**',
         loadComponent: () => import('./pages/not-found/not-found.component')
             .then(m => m.NotFoundComponent)

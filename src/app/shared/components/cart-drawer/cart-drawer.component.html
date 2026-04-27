@@ -1,0 +1,40 @@
+<!-- Backdrop -->
+@if (cart.isOpen()) {
+<div class="drawer-backdrop" (click)="cart.closeDrawer()"></div>
+}
+
+<!-- Drawer -->
+<div class="cart-drawer" [class.cart-drawer--open]="cart.isOpen()">
+
+    <div class="cart-drawer__header">
+        <h2 class="cart-drawer__title">Your Cart</h2>
+        <button class="cart-drawer__close" (click)="cart.closeDrawer()">✕</button>
+    </div>
+
+    @if (cart.allItems().length === 0) {
+    <div class="cart-drawer__empty">
+        <span>🛒</span>
+        <p>Nothing here yet.</p>
+    </div>
+    }
+
+    @for (item of cart.allItems(); track item.id) {
+    <div class="cart-drawer__item">
+        <span class="cart-drawer__item-emoji">{{ item.emoji }}</span>
+        <div class="cart-drawer__item-info">
+            <p class="cart-drawer__item-title">{{ item.title }}</p>
+            <p class="cart-drawer__item-price">{{ item.price }}</p>
+        </div>
+        <button class="cart-drawer__item-remove" (click)="cart.remove(item.id)">✕</button>
+    </div>
+    }
+
+    @if (cart.allItems().length > 0) {
+    <div class="cart-drawer__footer">
+        <p class="cart-drawer__coming-soon">
+            Checkout coming soon. 👀
+        </p>
+    </div>
+    }
+
+</div>

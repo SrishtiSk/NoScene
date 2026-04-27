@@ -1,7 +1,16 @@
 <div class="shell" [style.--page-accent]="accent">
     <nav class="shell__nav">
-        <button class="shell_back" (click)="goBack()">← back</button>
-        <span class="shell=Logo">No<span>Scene</span></span>
+        <button class="shell__back" (click)="goBack()">← back</button>
+        <span class="shell__logo">No<span>Scene</span></span>
+        
+        @if(showCart) { 
+        <button class="shell__cart" (click)="cart.toggleDrawer()">
+            🛒
+            @if(cart.count() > 0) {
+            <span class="shell__cart-badge">{{ cart.count() }}</span>
+            }
+        </button>
+        }
     </nav>
 
     <header class="shell__hero">
@@ -12,4 +21,5 @@
     <div class="shell__content">
         <ng-content />
     </div>
+    <app-cart-drawer />
 </div>

@@ -28,17 +28,47 @@
         &:hover {
             color: var(--page-accent);
         }
-    }
+    } 
 
     &__logo {
         font-family: $font-display;
         font-size: 1.1rem;
         font-weight: 700;
         color: var(--ns-text-primary);
-
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
         span {
             color: var(--page-accent);
         }
+    }
+
+    &__cart {
+        position: relative;
+        font-size: 1.2rem;
+        color: var(--ns-text-muted);
+        transition: color 0.2s;
+
+        &:hover {
+            color: var(--page-accent);
+        }
+    }
+
+    &__cart-badge {
+        position: absolute;
+        top: -6px;
+        right: -8px;
+        background: var(--page-accent);
+        color: #000;
+        font-family: $font-body;
+        font-size: 0.65rem;
+        font-weight: 700;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     // ── Hero ─────────────────────────────────────
