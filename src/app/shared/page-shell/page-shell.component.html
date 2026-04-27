@@ -1,0 +1,15 @@
+<div class="shell" [style.--page-accent]="accent">
+    <nav class="shell__nav">
+        <button class="shell_back" (click)="goBack()">← back</button>
+        <span class="shell=Logo">No<span>Scene</span></span>
+    </nav>
+
+    <header class="shell__hero">
+        <h1 class="shell__title" [innerHTML]="title"></h1>
+        <p class="shell__subtitle">{{ subtitle }}</p>
+    </header>
+    
+    <div class="shell__content">
+        <ng-content />
+    </div>
+</div>

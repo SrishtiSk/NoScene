@@ -1,1 +1,33 @@
-<p>marketplace works!</p>
+<app-page-shell title="Buy it. Sell it.<br/><span>No drama.</span>" subtitle="Everything you need. One place."
+    accent="#e8ff47">
+    
+    <!-- Category Filter -->
+    <div class="mp-filter">
+        @for (cat of categories; track cat) {
+        <button class="mp-filter__chip" [class.mp-filter__chip--active]="activeCategory() === cat"
+            (click)="setCategory(cat)">
+            {{ cat }}
+        </button>
+        }
+    </div>
+
+    <!-- Listings Grid -->
+    <div class="mp-grid">
+        @for (item of filtered; track item.id) {
+        <div class="mp-card">
+            <div class="mp-card__emoji">{{ item.emoji }}</div>
+            <div class="mp-card__body">
+                <span class="mp-card__category">{{ item.category }}</span>
+                <h3 class="mp-card__title">{{ item.title }}</h3>
+                <div class="mp-card__footer">
+                    <span class="mp-card__price">{{ item.price }}</span>
+                    <span class="mp-card__tag mp-card__tag--{{ item.tag }}">
+                        {{ item.tag }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+</app-page-shell>

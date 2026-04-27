@@ -1,0 +1,137 @@
+@use '../../../../../styles/tokens' as *;
+
+$accent: #e8ff47;
+
+// ── Category Filter ───────────────────────────────
+.mp-filter {
+    display: flex;
+    gap: var(--ns-space-sm);
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: var(--ns-space-md);
+    margin-bottom: var(--ns-space-lg);
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &__chip {
+        font-family: $font-body;
+        font-size: 0.85rem;
+        color: var(--ns-text-muted);
+        background: var(--ns-bg-raised);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 0.5rem 1.1rem;
+        border-radius: 2rem;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: $accent;
+            border-color: rgba(232, 255, 71, 0.3);
+        }
+
+        &--active {
+            color: #000;
+            background: $accent;
+            border-color: $accent;
+            font-weight: 600;
+        }
+    }
+}
+
+// ── Listings Grid ─────────────────────────────────
+.mp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--ns-space-md);
+}
+
+// ── Listing Card ──────────────────────────────────
+.mp-card {
+    background: var(--ns-bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease,
+        box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        border-color: rgba(232, 255, 71, 0.25);
+        box-shadow: 0 8px 28px rgba(232, 255, 71, 0.08);
+    }
+
+    &__emoji {
+        font-size: 3rem;
+        background: var(--ns-bg-raised);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 120px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    &__body {
+        padding: var(--ns-space-md);
+        display: flex;
+        flex-direction: column;
+        gap: var(--ns-space-xs);
+    }
+
+    &__category {
+        font-family: $font-body;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: $accent;
+        font-weight: 500;
+    }
+
+    &__title {
+        font-family: $font-display;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--ns-text-primary);
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: var(--ns-space-xs);
+    }
+
+    &__price {
+        font-family: $font-body;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--ns-text-primary);
+    }
+
+    &__tag {
+        font-size: 0.7rem;
+        font-family: $font-body;
+        padding: 0.2rem 0.6rem;
+        border-radius: 1rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+
+        &--new {
+            background: rgba(71, 212, 255, 0.15);
+            color: #47d4ff;
+        }
+
+        &--used {
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--ns-text-muted);
+        }
+
+        &--negotiable {
+            background: rgba(180, 127, 255, 0.15);
+            color: #b47fff;
+        }
+    }
+}
