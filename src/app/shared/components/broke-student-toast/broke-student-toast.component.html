@@ -1,0 +1,20 @@
+@if (cart.brokeStudentEgg()) {
+<div class="bst">
+    <div class="bst__main">
+        <p class="bst__message">
+            You added it. You removed it.<br />
+            We've all been there. 😭
+        </p>
+        <button class="bst__dismiss" (click)="cart.brokeStudentEgg.set(false)">
+            ✕
+        </button>
+    </div>
+
+    <div class="bst__nudge">
+        <span class="bst__psst">psst! we have rentals.</span>
+        <button class="bst__arrow" (click)="goToRentals()">
+            👉
+        </button>
+    </div>
+</div>
+}

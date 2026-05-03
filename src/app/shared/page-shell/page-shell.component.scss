@@ -1,4 +1,4 @@
-@use '../../../styles/tokens' as *;
+@use 'app/styles/tokens';
 
 .shell {
     min-height: 100vh;
@@ -19,7 +19,7 @@
     }
 
     &__back {
-        font-family: $font-body;
+        font-family: var(--font-body);
         font-size: 0.85rem;
         color: var(--ns-text-muted);
         letter-spacing: 0.05em;
@@ -31,7 +31,7 @@
     } 
 
     &__logo {
-        font-family: $font-display;
+        font-family: var(--font-display);
         font-size: 1.1rem;
         font-weight: 700;
         color: var(--ns-text-primary);
@@ -60,7 +60,7 @@
         right: -8px;
         background: var(--page-accent);
         color: #000;
-        font-family: $font-body;
+        font-family: var(--font-body);
         font-size: 0.65rem;
         font-weight: 700;
         width: 16px;
@@ -82,7 +82,7 @@
     }
 
     &__title {
-        font-family: $font-display;
+        font-family: var(--font-display);
         font-size: clamp(2.2rem, 6vw, 4.5rem);
         font-weight: 800;
         color: var(--ns-text-primary);
@@ -95,13 +95,13 @@
     }
 
     &__subtitle {
-        font-family: $font-quirk;
+        font-family: var(--font-quirk);
         font-size: 1.3rem;
         color: var(--ns-text-muted);
     }
 
     // ── Content slot ─────────────────────────────
-    &__content {
-        padding: 0 var(--ns-space-xl) var(--ns-space-2xl);
-    }
+   &__content {
+       padding: var(--ns-space-lg) var(--ns-space-xl) var(--ns-space-2xl);
+   }
 }

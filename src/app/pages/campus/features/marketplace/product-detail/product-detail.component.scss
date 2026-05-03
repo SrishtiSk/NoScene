@@ -1,0 +1,360 @@
+@use 'app/styles/tokens';
+
+.pd {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--ns-space-xl);
+    padding-top: var(--ns-space-md);
+
+    // ── Breadcrumb ─────────────────────────────
+    &__breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family:var(--font-body);
+        font-size: 0.8rem;
+        color: var(--ns-text-ghost);
+        flex-wrap: wrap;
+
+        a {
+            color: var(--ns-text-muted);
+            transition: color 0.2s;
+
+            &:hover {
+                color: var(--ns-accent);
+            }
+        }
+
+        span {
+            color: var(--ns-text-ghost);
+        }
+
+        &--active {
+            color: var(--ns-text-primary);
+        }
+    }
+
+    // ── Top layout ─────────────────────────────
+    &__top {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: var(--ns-space-xl);
+        align-items: start;
+
+        @media (max-width: 680px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // ── Gallery ────────────────────────────────
+    &__gallery {
+        display: flex;
+        flex-direction: column;
+        gap: var(--ns-space-sm);
+    }
+
+    &__main-image {
+        position: relative;
+        border-radius: 1.25rem;
+        overflow: hidden;
+        background: var(--ns-bg-raised);
+        aspect-ratio: 4/3;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.3s ease;
+    }
+
+    &__tag {
+        position: absolute;
+        top: var(--ns-space-md);
+        right: var(--ns-space-md);
+        font-size: 0.7rem;
+        font-family: var(--font-body);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.7rem;
+        border-radius: 2rem;
+        backdrop-filter: blur(8px);
+
+        &--new {
+            background: rgba(71, 212, 255, 0.2);
+            color: #47d4ff;
+        }
+
+        &--used {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--ns-text-muted);
+        }
+
+        &--negotiable {
+            background: rgba(180, 127, 255, 0.2);
+            color: #b47fff;
+        }
+    }
+
+    // ── Thumbnails ─────────────────────────────
+    &__thumbs {
+        display: flex;
+        gap: var(--ns-space-sm);
+    }
+
+    &__thumb {
+        width: 72px;
+        height: 72px;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.06);
+        transition: border-color 0.2s;
+        flex-shrink: 0;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &--active {
+            border-color: var(--ns-accent);
+        }
+
+        &:hover:not(&--active) {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+
+    // ── Info panel ─────────────────────────────
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--ns-space-md);
+        position: sticky;
+        top: 80px; // ← sticks while gallery scrolls
+    }
+
+    &__category {
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ns-accent);
+        font-weight: 600;
+    }
+
+    &__title {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        font-weight: 800;
+        color: var(--ns-text-primary);
+        line-height: 1.05;
+    }
+
+    &__price {
+        font-family: var(--font-display);
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--ns-accent);
+        line-height: 1;
+    }
+
+    &__description {
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        color: var(--ns-text-muted);
+        line-height: 1.75;
+    }
+
+    // ── Seller ─────────────────────────────────
+    &__seller {
+        display: flex;
+        align-items: center;
+        gap: var(--ns-space-md);
+        padding: var(--ns-space-md);
+        background: var(--ns-bg-raised);
+        border-radius: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    &__seller-avatar {
+        font-size: 1.8rem;
+    }
+
+    &__seller-name {
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--ns-text-primary);
+    }
+
+    &__seller-location {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        color: var(--ns-text-muted);
+        margin-top: 2px;
+    }
+
+    // ── CTA ────────────────────────────────────
+    &__cta {
+        width: 100%;
+        padding: 1rem;
+        background: var(--ns-accent);
+        color: #000;
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 700;
+        border-radius: 0.75rem;
+        letter-spacing: 0.02em;
+        transition: opacity 0.2s, background 0.3s, color 0.3s;
+
+        &:hover {
+            opacity: 0.88;
+        }
+
+        &--added {
+            background: transparent;
+            color: var(--ns-accent);
+            border: 1.5px solid var(--ns-accent);
+        }
+    }
+
+    // ── Section title ──────────────────────────
+    &__section-title {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--ns-text-primary);
+        margin-bottom: var(--ns-space-md);
+    }
+
+    // ── Reviews carousel ───────────────────────
+    &__reviews {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding-top: var(--ns-space-xl);
+    }
+
+    &__review-carousel {
+        display: flex;
+        gap: var(--ns-space-md);
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding-bottom: var(--ns-space-sm);
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    &__review-card {
+        min-width: 260px;
+        background: var(--ns-bg-surface);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 1rem;
+        padding: var(--ns-space-md);
+        display: flex;
+        flex-direction: column;
+        gap: var(--ns-space-sm);
+        flex-shrink: 0;
+    }
+
+    &__review-coming {
+        display: flex;
+        align-items: center;
+        gap: var(--ns-space-sm);
+        margin-bottom: var(--ns-space-xs);
+
+        span {
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-family: var(--font-quirk);
+            font-size: 0.95rem;
+            color: var(--ns-text-ghost);
+        }
+    }
+
+    // ── Skeleton lines ─────────────────────────
+    &__skeleton {
+        background: linear-gradient(90deg,
+                var(--ns-bg-raised) 25%,
+                rgba(255, 255, 255, 0.04) 50%,
+                var(--ns-bg-raised) 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.8s infinite;
+        border-radius: 4px;
+
+        &--name {
+            height: 12px;
+            width: 40%;
+        }
+
+        &--line {
+            height: 10px;
+            width: 100%;
+        }
+
+        &--line-short {
+            height: 10px;
+            width: 65%;
+        }
+    }
+
+    // ── Specs ──────────────────────────────────
+    &__specs {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding-top: var(--ns-space-xl);
+        padding-bottom: var(--ns-space-xl);
+    }
+
+    &__specs-grid {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 0.75rem;
+        overflow: hidden;
+    }
+
+    &__spec-row {
+        display: flex;
+        justify-content: space-between;
+        padding: var(--ns-space-md);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:nth-child(even) {
+            background: var(--ns-bg-raised);
+        }
+    }
+
+    &__spec-label {
+        font-family:var(--font-body);
+        font-size: 0.9rem;
+        color: var(--ns-text-muted);
+    }
+
+    &__spec-value {
+        font-family: var(--font-body);
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--ns-text-primary);
+    }
+}
+
+// ── Shimmer animation ───────────────────────────
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}

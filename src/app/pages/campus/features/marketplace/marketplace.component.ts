@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { PageShellComponent } from '../../../../shared/page-shell/page-shell.component';
+import { Router } from '@angular/router';
 
 
 interface Listing {
@@ -9,6 +10,7 @@ interface Listing {
   price: string;
   category: string;
   tag: 'new' | 'used' | 'negotiable';
+  slug:string;
 }
 
 
@@ -21,7 +23,8 @@ interface Listing {
 })
 
 export class MarketplaceComponent {
-
+  private router = inject(Router);
+  
   activeCategory= signal('All');
 
   categories = [
@@ -30,14 +33,14 @@ export class MarketplaceComponent {
   ];
 
   listings: Listing[] = [
-    { id: 1, emoji: '👗', title: 'Floral Sundress', price: '₹650', category: "Women's Fashion", tag: 'used' },
-    { id: 2, emoji: '👟', title: 'Nike Air Force 1', price: '₹3,200', category: "Men's Fashion", tag: 'used' },
-    { id: 3, emoji: '💻', title: 'MacBook Air M1', price: '₹55,000', category: 'Electronics', tag: 'negotiable' },
-    { id: 4, emoji: '📓', title: 'Classmate Notebooks', price: '₹120', category: 'Stationery', tag: 'new' },
-    { id: 5, emoji: '🪑', title: 'Study Chair', price: '₹1,800', category: 'Furniture', tag: 'used' },
-    { id: 6, emoji: '👜', title: 'Leather Tote Bag', price: '₹899', category: "Women's Fashion", tag: 'new' },
-    { id: 7, emoji: '⌨️', title: 'Mechanical Keyboard', price: '₹2,100', category: 'Electronics', tag: 'used' },
-    { id: 8, emoji: '👕', title: 'Oversized Hoodie', price: '₹750', category: "Men's Fashion", tag: 'new' },
+    { id: 1, emoji: '👗', title: 'Floral Sundress', price: '₹650', category: "Women's Fashion", tag: 'used', slug: 'floral-sundress' },
+    { id: 2, emoji: '👟', title: 'Nike Air Force 1', price: '₹3,200', category: "Men's Fashion", tag: 'used', slug: 'nike-shoe' },
+    { id: 3, emoji: '💻', title: 'MacBook Air M1', price: '₹55,000', category: 'Electronics', tag: 'negotiable', slug:'macbook-air'},
+    { id: 4, emoji: '📓', title: 'Classmate Notebooks', price: '₹120', category: 'Stationery', tag: 'new', slug:'' },
+    { id: 5, emoji: '🪑', title: 'Study Chair', price: '₹1,800', category: 'Furniture', tag: 'used', slug:'study-chair' },
+    { id: 6, emoji: '👜', title: 'Leather Tote Bag', price: '₹899', category: "Women's Fashion", tag: 'new', slug:'' },
+    { id: 7, emoji: '⌨️', title: 'Mechanical Keyboard', price: '₹2,100', category: 'Electronics', tag: 'used', slug:'' },
+    { id: 8, emoji: '👕', title: 'Oversized Hoodie', price: '₹750', category: "Men's Fashion", tag: 'new', slug: '' },
   ];
 
   get filtered(): Listing[] {
@@ -48,4 +51,12 @@ export class MarketplaceComponent {
   }
 
   setCategory(cat: string) { this.activeCategory.set(cat); }
+
+  // goToProduct(id:string){
+  //   this.router.navigate(['/campus/marketplace', id]);
+  // }
+  goToProduct(slug:string){
+    if(!slug) return;
+    this.router.navigate(['/campus/marketplace', slug]);
+  }
 }

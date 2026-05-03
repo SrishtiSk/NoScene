@@ -1,1 +1,96 @@
-<p>product-detail works!</p>
+@if (product(); as p) {
+<app-page-shell title="" [subtitle]="''" accent="#e8ff47" [showCart]="true">
+
+    <div class="pd">
+
+        <!-- Breadcrumb -->
+        <nav class="pd__breadcrumb">
+            <a routerLink="/campus">Home</a>
+            <span>›</span>
+            <a routerLink="/campus/marketplace">Marketplace</a>
+            <span>›</span>
+            <a routerLink="/campus/marketplace">{{ p.category }}</a>
+            <span>›</span>
+            <span class="pd__breadcrumb--active">{{ p.title }}</span>
+        </nav>
+
+        <!-- Main layout -->
+        <div class="pd__top">
+
+            <!-- Left — Image Gallery -->
+            <div class="pd__gallery">
+                <div class="pd__main-image">
+                    <img [src]="p.images[activeImage()]" [alt]="p.title" class="pd__img" />
+                    <span class="pd__tag pd__tag--{{ p.tag }}">{{ p.tag }}</span>
+                </div>
+
+                @if (p.images.length > 1) {
+                <div class="pd__thumbs">
+                    @for (img of p.images; track $index) {
+                    <button class="pd__thumb" [class.pd__thumb--active]="activeImage() === $index"
+                        (click)="setImage($index)">
+                        <img [src]="img" [alt]="p.title + ' view ' + $index" />
+                    </button>
+                    }
+                </div>
+                }
+            </div>
+
+            <!-- Right — Info -->
+            <div class="pd__info">
+                <p class="pd__category">{{ p.category }}</p>
+                <h1 class="pd__title">{{ p.title }}</h1>
+                <p class="pd__price">{{ p.price }}</p>
+                <p class="pd__description">{{ p.description }}</p>
+
+                <!-- Seller -->
+                <div class="pd__seller">
+                    <span class="pd__seller-avatar">👤</span>
+                    <div>
+                        <p class="pd__seller-name">{{ p.seller }}</p>
+                        <p class="pd__seller-location">📍 {{ p.location }}</p>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <button class="pd__cta" [class.pd__cta--added]="added()" (click)="addToCart()">
+                    {{ added() ? '✓ Added to Cart' : 'Add to Cart' }}
+                </button>
+            </div>
+        </div>
+
+        <!-- Reviews — skeleton carousel -->
+        <section class="pd__reviews">
+            <h2 class="pd__section-title">Reviews</h2>
+            <div class="pd__review-carousel">
+                @for (i of [1,2,3]; track i) {
+                <div class="pd__review-card">
+                    <div class="pd__review-coming">
+                        <span>⭐</span>
+                        <p>Coming soon</p>
+                    </div>
+                    <!-- skeleton lines -->
+                    <div class="pd__skeleton pd__skeleton--name"></div>
+                    <div class="pd__skeleton pd__skeleton--line"></div>
+                    <div class="pd__skeleton pd__skeleton--line-short"></div>
+                </div>
+                }
+            </div>
+        </section>
+
+        <!-- Specifications -->
+        <section class="pd__specs">
+            <h2 class="pd__section-title">Specifications</h2>
+            <div class="pd__specs-grid">
+                @for (spec of p.specs; track spec.label) {
+                <div class="pd__spec-row">
+                    <span class="pd__spec-label">{{ spec.label }}</span>
+                    <span class="pd__spec-value">{{ spec.value }}</span>
+                </div>
+                }
+            </div>
+        </section>
+
+    </div>
+</app-page-shell>
+}

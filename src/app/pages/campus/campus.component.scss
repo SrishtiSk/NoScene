@@ -1,4 +1,4 @@
-@use '../../../styles/tokens' as *;
+@use 'app/styles/tokens';
 
 .cx-nav{
     display: flex;
@@ -13,7 +13,7 @@
     z-index: 100;
 
     &__logo {
-        font-family: $font-display;
+        font-family: var(--font-display);
         font-size: 1.2rem;
         font-weight: 700;
         color: var(--ns-text-primary);
@@ -23,7 +23,7 @@
         }
     }
     &__tagline {
-        font-family: $font-quirk;
+        font-family: var(--font-quirk);
         font-size: 1rem;
         color: var(--ns-text-ghost);
         margin-left: var(--ns-space-sm);
@@ -61,7 +61,7 @@
     }
 
     &__headline {
-        font-family: $font-display;
+        font-family: var(--font-display);
         font-size: clamp(2rem, 4vw, 2.8rem);
         font-weight: 800;
         color: var(--ns-text-primary);
@@ -69,7 +69,7 @@
     }
 
     &__sub {
-        font-family: $font-quirk;
+        font-family: var(--font-quirk);
         font-size: 1.2rem;
         color: var(--ns-text-muted);
     }
@@ -154,14 +154,14 @@
     }
 
     &__label {
-        font-family: $font-display;
+        font-family: var(--font-display);
         font-size: 1.4rem;
         font-weight: 700;
         color: var(--ns-text-primary);
     }
 
     &__desc {
-        font-family: $font-body;
+        font-family: var(--font-body);
         font-size: 0.9rem;
         color: var(--ns-text-muted);
         line-height: 1.5;
@@ -175,7 +175,7 @@
     }
 
     &__cat {
-        font-family: $font-body;
+        font-family: var(--font-body);
         font-size: 0.75rem;
         color: var(--ns-text-ghost);
         border: 1px solid rgba(255, 255, 255, 0.08);

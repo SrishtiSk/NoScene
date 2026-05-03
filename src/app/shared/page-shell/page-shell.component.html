@@ -13,10 +13,12 @@
         }
     </nav>
 
+    @if (title) {
     <header class="shell__hero">
         <h1 class="shell__title" [innerHTML]="title"></h1>
         <p class="shell__subtitle">{{ subtitle }}</p>
     </header>
+    }
     
     <div class="shell__content">
         <ng-content />

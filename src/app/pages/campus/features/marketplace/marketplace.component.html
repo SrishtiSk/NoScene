@@ -14,7 +14,9 @@
     <!-- Listings Grid -->
     <div class="mp-grid">
         @for (item of filtered; track item.id) {
-        <div class="mp-card">
+        <div class="mp-card" [class.mp.card--clickable] = "item.slug"
+            (click)="goToProduct(item.slug)">
+            
             <div class="mp-card__emoji">{{ item.emoji }}</div>
             <div class="mp-card__body">
                 <span class="mp-card__category">{{ item.category }}</span>

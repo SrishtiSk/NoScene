@@ -21,9 +21,10 @@
     --ns-space-lg: 2rem;
     --ns-space-xl: 4rem;
     --ns-space-2xl: 8rem;
+
+    // ─── TYPOGRAPHY TOKENS ──────────────────────────
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-quirk: 'Caveat', cursive;
 }
 
-// ─── TYPOGRAPHY TOKENS ──────────────────────────
-$font-display: 'Syne', sans-serif;
-$font-body: 'Inter', sans-serif;
-$font-quirk: 'Caveat', cursive;

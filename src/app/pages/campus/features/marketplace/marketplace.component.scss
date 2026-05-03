@@ -1,4 +1,4 @@
-@use '../../../../../styles/tokens' as *;
+@use 'app/styles/tokens';
 
 $accent: #e8ff47;
 
@@ -16,7 +16,7 @@ $accent: #e8ff47;
     }
 
     &__chip {
-        font-family: $font-body;
+        font-family: var(--font-body);
         font-size: 0.85rem;
         color: var(--ns-text-muted);
         background: var(--ns-bg-raised);
@@ -49,11 +49,14 @@ $accent: #e8ff47;
 
 // ── Listing Card ──────────────────────────────────
 .mp-card {
+    &--clickable {cursor: pointer;}
+    &:not(&--clickable) {cursor: default;}
+
     background: var(--ns-bg-surface);
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 1rem;
     overflow: hidden;
-    cursor: pointer;
+   // cursor: pointer;
     transition: transform 0.3s ease, border-color 0.3s ease,
         box-shadow 0.3s ease;
 
@@ -63,6 +66,7 @@ $accent: #e8ff47;
         box-shadow: 0 8px 28px rgba(232, 255, 71, 0.08);
     }
 
+   
     &__emoji {
         font-size: 3rem;
         background: var(--ns-bg-raised);
@@ -81,7 +85,7 @@ $accent: #e8ff47;
     }
 
     &__category {
-        font-family: $font-body;
+        font-family: var(--font-body);
         font-size: 0.7rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
@@ -90,7 +94,7 @@ $accent: #e8ff47;
     }
 
     &__title {
-        font-family: $font-display;
+        font-family: var(--font-display);
         font-size: 1rem;
         font-weight: 700;
         color: var(--ns-text-primary);
@@ -104,7 +108,7 @@ $accent: #e8ff47;
     }
 
     &__price {
-        font-family: $font-body;
+        font-family: var(--font-body);
         font-size: 1rem;
         font-weight: 600;
         color: var(--ns-text-primary);
@@ -112,7 +116,7 @@ $accent: #e8ff47;
 
     &__tag {
         font-size: 0.7rem;
-        font-family: $font-body;
+        font-family: var(--font-body);
         padding: 0.2rem 0.6rem;
         border-radius: 1rem;
         font-weight: 500;

@@ -1,5 +1,5 @@
-@use 'styles/tokens' as *;
-@use 'styles/reset' as *;
+@use 'app/styles/tokens';
+@use 'app/styles/reset';
 
 // Google Fonts import
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Caveat:wght@500&display=swap');
