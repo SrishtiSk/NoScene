@@ -1,0 +1,14 @@
+{
+    "builds": [
+        {
+            "src": "angular.json",
+            "use": "@vercel/builders:angular"
+        }
+    ],
+    "routes": [
+        {
+            "src": "^(?!.*\\\\.(?:js|css|svg|png|jpg|jpeg|gif|webp|woff|woff2|ttf|eot)$).*$",
+            "dest": "/index.html"
+        }
+    ]
+}
