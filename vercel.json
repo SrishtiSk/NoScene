@@ -1,7 +1,0 @@
-{
-    "buildCommand": "ng build",
-    "outputDirectory": "dist/noscene/browser",
-    "env": {
-        "SKIP_ENV_VALIDATION": "true"
-    }
-}
