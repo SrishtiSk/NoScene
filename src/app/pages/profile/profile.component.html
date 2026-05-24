@@ -1,0 +1,149 @@
+<app-page-shell title="" subtitle="" accent="#e8ff47">
+    <div class="profile">
+
+        <!---Opening Links-->
+        <p class="profile__opening">
+            Oh, your're still here? <br/>
+            <span>Good. That means it worked.</span>
+        </p>
+
+        <section class="profile__hero">
+            <div class="profile__photo-wrap">
+                <img src="assets/srishti.png" alt="Srishti's photo" class="profile__photo"/>
+             <div class="profile__photo-glow"></div>
+            </div>
+
+            <div class="profile__identity">
+                <h1 class="profile__name">Srishti Sureshkumar</h1>
+                <p class="profile__role">Frontend Developer · 4+ years</p>
+                <p class="profile__location">📍 Bengaluru</p>
+                <p class="profile__statement">
+                    4 years of shipping things that work.<br />
+                    Angular is where I live.<br />
+                    Craft is what I don't compromise on.<br />
+                    <span>You just used my work —
+                        imagine what I build for yours.</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- ── Skills ── -->
+        <section class="profile__section">
+            <h2 class="profile__section-title">
+                Things I've bent to my will —
+            </h2>
+            <div class="profile__skills">
+                @for (skill of skills; track skill.name) {
+                <div class="profile__skill" [class.profile__skill--core]="skill.level === 'core'"
+                    [class.profile__skill--strong]="skill.level === 'strong'"
+                    [class.profile__skill--growing]="skill.level === 'growing'">
+                    <span class="profile__skill-name">{{ skill.name }}</span>
+                    <span class="profile__skill-claim">{{ skill.claim }}</span>
+                </div>
+                }
+            </div>
+        </section>
+
+        <!-- ── Experience ── -->
+        <section class="profile__section">
+            <h2 class="profile__section-title">Where I've shipped —</h2>
+            <div class="profile__timeline">
+                @for (exp of experience; track exp.company) {
+                <div class="profile__exp">
+                    <div class="profile__exp-dot"></div>
+                    <div class="profile__exp-content">
+                        <div class="profile__exp-header">
+                            <span class="profile__exp-role">{{ exp.role }}</span>
+                            <span class="profile__exp-period">{{ exp.period }}</span>
+                        </div>
+                        <span class="profile__exp-company">{{ exp.company }}</span>
+                        <p class="profile__exp-line">{{ exp.line }}</p>
+                    </div>
+                </div>
+                }
+            </div>
+        </section>
+    </div>
+</app-page-shell>
+
+<!--Resume Popup -->
+<div class="resume-backdrop" (click)="closeResume()">
+    <div class="resume-modal" (click)="$event.stopPropagation()">
+
+        <div class="resume-modal__header">
+            <h2 class="resume-modal__name">Srishti Sureshkumar</h2>
+            <div class="resume-modal__actions">
+                <button class="resume-modal__download" (click)="downloadResume()"> ↓ Download </button>
+                <button class="resume-modal__close" (click)="closeResume()">✕</button>
+            </div>
+        </div>
+
+        <div class="resume-modal__body">
+            <!--contact information -->
+            <div class="resume-modal__contact-row">
+                <span>📞 +91 8792883637</span>
+                <span>✉️ srishtisureshkumar&#64;gmail.com</span>
+                <span>💼 Srishtisk</span>
+                <span>🐙 SrishtiSk</span>
+                <span>📍 Bengaluru</span>
+            </div>
+
+            <!-- Summary -->
+            <div class="resume-modal__block">
+                <h3 class="resume-modal__block-title">Summary</h3>
+                <p class="resume-modal__text">
+                    Frontend engineer with 4+ years across product and enterprise.
+                    Angular-first. REST API fluent. Ships scalable, maintainable,
+                    user-centric solutions. Agile. Client-facing. AI-curious.
+                </p>
+            </div>
+
+            <!-- Experience -->
+            <div class="resume-modal__block">
+                <h3 class="resume-modal__block-title">Experience</h3>
+                @for (exp of experience; track exp.company) {
+                <div class="resume-modal__exp">
+                    <div class="resume-modal__exp-header">
+                        <span class="resume-modal__exp-role">
+                            {{ exp.role }} — {{ exp.company }}
+                        </span>
+                        <span class="resume-modal__exp-period">
+                            {{ exp.period }}
+                        </span>
+                    </div>
+                    <p class="resume-modal__exp-line">{{ exp.line }}</p>
+                </div>
+                }
+            </div>
+
+            <!-- Skills -->
+            <div class="resume-modal__block">
+                <h3 class="resume-modal__block-title">Skills</h3>
+                <div class="resume-modal__skills">
+                    @for (skill of skills; track skill.name) {
+                    <span class="resume-modal__skill-tag">{{ skill.name }}</span>
+                    }
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="resume-modal__block">
+                <h3 class="resume-modal__block-title">Education</h3>
+                <p class="resume-modal__text">
+                    BE Information Science & Engineering<br />
+                    <span>Visvesvaraya Technological University · 2016–2020</span>
+                </p>
+            </div>
+
+            <!-- Certifications -->
+            <div class="resume-modal__block">
+                <h3 class="resume-modal__block-title">Certifications</h3>
+                <p class="resume-modal__text">
+                    Google AI Essentials &nbsp;·&nbsp;
+                    Google Project Management
+                </p>
+            </div>
+                
+        </div>
+    </div>
+</div>

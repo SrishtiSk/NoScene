@@ -38,6 +38,11 @@ export const routes: Routes = [
                 .then(m => m.ProductDetailComponent)
     },
     {
+        path: 'profile',
+        loadComponent: () => import('./pages/profile/profile.component')
+            .then(m => m.ProfileComponent)
+    },
+    {
         path:'**',
         loadComponent: () => import('./pages/not-found/not-found.component')
             .then(m => m.NotFoundComponent)
